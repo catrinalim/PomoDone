@@ -2,10 +2,17 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const taskRoutes = require('./routes/tasks')
 
 // express app
 const app = express()
+
+// enable CORS
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+}));
 
 // middleware
 app.use(express.json())
