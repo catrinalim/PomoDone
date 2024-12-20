@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useTasksContext } from '../hooks/useTasksContext'
 
 // components
 import TaskDetails from '../components/TaskDetails'
 import TaskForm from '../components/TaskForm'
 
 const Home = () => {
-    const [tasks, setTasks] = useState(null)
+    const {tasks, dispatch} = useTasksContext()
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await fetch('/api/tasks')
-                const json = await response.json()  // creates array of task objects
+        const fetchTasks = async () => {  
+            const response = await fetch('/api/tasks')
+            const json = await response.json()  // creates array of task objects
 
-                if (response.ok) {
-                    setTasks(json)
-                }
-            } catch (error) {
-                console.error("Error fetching tasks:", error);
+            if (response.ok) {
+                dispatch({type: 'SET_TASKS', payload: json})
             }
         }
 
