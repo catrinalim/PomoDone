@@ -19,7 +19,7 @@ const TaskDetails = ({ task }) => {
             <h4>{task.title}</h4>
             <p><strong>Weight: </strong>{task.weight}</p>
             <p>{task.createdAt}</p>
-            <span onClick={handleClick}>delete</span>
+            <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div>
     )
 }
